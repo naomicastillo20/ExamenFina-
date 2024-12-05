@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Reportes</h1>
+        <form method="post" action="/generar_reporte">
+            <label for="tabla">Seleccione la tabla para el reporte:</label>
+            <select id="tabla" name="tabla" required>
+                <option value="">-- Seleccione una tabla --</option>
+                <option value="proveedores">Proveedores</option>
+                <option value="transacciones">Transacciones</option>
+                <option value="facturas">Facturas</option>
+            </select><br><br>
+
+            <div class="actions">
+                <button type="submit" name="formato" value="pdf" class="reporte-button">Generar reporte en PDF</button>
+                <button type="submit" name="formato" value="excel" class="reporte-button">Generar reporte en Excel</button>
+            </div><br>
+        </form>
+        <a href="/" class="menu-button">Volver al Menú Principal</a>
+    </div>
+{% endblock %}

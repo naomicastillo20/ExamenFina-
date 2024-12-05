@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+    <h1>Realizar Transacción</h1>
+    <form method="POST" action="/agregar_transaccion" id="payment-form" onsubmit="return validatePaymentForm()">
+
+        <label for="id_transaccion">Transaccion ID:</label>
+        <input type="text" id="id_transaccion" name="id_transaccion" required><br><br>
+
+        <label for="id_proveedor">Proveedor ID:</label>
+        <input type="text" id="id_proveedor" name="id_proveedor" required><br><br>
+
+        <label for="tipo_movimiento">Tipo Movimiento:</label>
+        <select id="tipo_movimiento" name="tipo_movimiento" required>
+            <option value="DB">DB</option>
+            <option value="CR">CR</option>
+        </select><br><br>
+
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" name="monto" step="0.01" required><br>
+
+        <button type="submit" class="menu-button">Agregar</button>
+    </form>
+    <a href="/" class="mp-button">Volver al Menú Principal</a>
+</div>
+{% endblock %}
+

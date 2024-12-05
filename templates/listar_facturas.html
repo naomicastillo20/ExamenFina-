@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Listar Facturas</h1>
+
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Buscar por monto o descripción" onkeyup="filterResults()">
+            <button onclick="filterResults()" class="menu-button">Buscar</button>
+        </div>
+
+        <table id="invoice-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>Monto</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Emisión</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for factura in facturas %}
+                <tr>
+                    <td>{{ factura[0] }}</td>  <!-- ID -->
+                    <td>{{ factura[1] }}</td>  <!-- Proveedor -->
+                    <td>{{ factura[2] }}</td>  <!-- Monto -->
+                    <td>{{ factura[3] }}</td>  <!-- Descripción -->
+                    <td>{{ factura[4] }}</td>  <!-- Fecha de Emisión -->
+                    <td>{{ factura[5] }}</td>  <!-- Fecha de Vencimiento -->
+                    <td>
+                        <a href="/editar_factura/{{ factura[0] }}" class="menu-button">Editar</a>
+                        <form action="/eliminar_factura/{{ factura[0] }}" method="POST" style="display:inline;">
+                            <button type="submit" class="menu-button-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta factura?');">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/" class="mp-button">Volver al Menú Principal</a>
+    </div>
+
+    <script>
+        function filterResults() {
+            const input = document.getElementById('search');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('invoice-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowVisible = false;
+
+                for (let j = 0; j < cells.length - 1; j++) { // Ignorar la última columna (acciones)
+                    if (cells[j] && cells[j].textContent.toLowerCase().includes(filter)) {
+                        rowVisible = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = rowVisible ? '' : 'none';
+            }
+        }
+    </script>
+{% endblock %}

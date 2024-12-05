@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+    <h1>Listado de Transacciones</h1>
+    <form method="GET" action="/listar_transacciones">
+        <label for="tipo">Tipo de Movimiento:</label>
+        <select id="tipo" name="tipo">
+            <option value="">Todas</option>
+            <option value="CR">CR</option>
+            <option value="DB">DR</option>
+        </select>
+
+        <label for="proveedor_id">Proveedor:</label>
+        <input type="text" id="proveedor_id" name="proveedor_id">
+
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" name="monto">
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Transaccion</th>
+                <th>Proveedor</th>
+                <th>Tipo</th>
+                <th>Monto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Transacciones renderizadas aquí -->
+            {% for transaccion in transacciones %}
+            <tr>
+                <td>{{ transaccion[0] }}</td>
+                <td>{{ transaccion[1] }}</td>
+                <td>{{ transaccion[2] }}</td>
+                <td>{{ transaccion[3] }}</td>
+                <td>
+                    <a href="/editar_transaccion/{{ transaccion[0] }}" class="menu-button">Editar</a><br><br>
+                    <form action="/eliminar_transaccion/{{ transaccion[0] }}" method="POST" style="display:inline;">
+                        <button type="submit" class="menu-button-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta transaccion?');">Eliminar</button>
+                    </form>  
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/" class="mp-button">Volver al Menú Principal</a>
+</div>
+{% endblock %}

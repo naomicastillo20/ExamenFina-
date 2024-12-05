@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Listar Proveedores</h1>
+        <input type="text" id="search" placeholder="Buscar por nombre..." onkeyup="filterTable()"> <button onclick="filterTable()" class="menu-button">Buscar</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Balance</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="proveedorTable">
+                {% for proveedor in proveedores %}
+                <tr>
+                    <td>{{ proveedor[0] }}</td>
+                    <td>{{ proveedor[1] }}</td>
+                    <td>{{ proveedor[2] }}</td>
+                    <td>
+                        <a href="/editar_proveedor/{{ proveedor[0] }}" class="menu-button">Editar</a>
+                        <form action="/eliminar_proveedor/{{ proveedor[0] }}" method="POST" style="display:inline;">
+                            <button type="submit" class="menu-button-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este proveedor?');">Eliminar</button>
+                        </form>  
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="mp-button">Volver al Menú Principal</a>
+    </div>
+
+    <script>
+        function filterTable() {
+    const input = document.getElementById('search');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('proveedorTable');
+    const rows = table.getElementsByTagName('tr');
+
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        if (cells.length > 0) {
+            // Buscar en la segunda celda (nombre) en lugar de la primera (ID)
+            const nombre = cells[1].textContent || cells[1].innerText;
+            if (nombre.toLowerCase().indexOf(filter) > -1) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+}
+    </script>
+{% endblock %}

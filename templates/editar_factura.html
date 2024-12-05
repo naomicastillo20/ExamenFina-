@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Editar Factura</h1>
+<form method="POST" enctype="multipart/form-data">
+    <label for="id_proveedor">Proveedor:</label>
+    <select id="id_proveedor" name="id_proveedor" required>
+        {% for proveedor in proveedores %}
+            <option value="{{ proveedor[0] }}" {% if factura[1] == proveedor[0] %}selected{% endif %}>
+                {{ proveedor[1] }}
+            </option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <label for="monto">Monto:</label>
+    <input type="number" step="0.01" id="monto" name="monto" value="{{ factura[2] }}" required><br><br>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" required>{{ factura[3] }}</textarea><br><br>
+
+    <label for="fecha_emision">Fecha de Emisión:</label>
+    <input type="date" id="fecha_emision" name="fecha_emision" value="{{ factura[4] }}" required><br><br>
+
+    <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+    <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" value="{{ factura[5] }}" required><br><br>
+
+    <button type="submit" class="menu-button">Actualizar</button>
+</form>
+<a href="/" class="mp-button">Volver al Menú Principal</a>
+
+<script>
+    // Validación básica del formulario antes de enviarlo
+    document.querySelector('form').onsubmit = function () {
+        const monto = parseFloat(document.getElementById('monto').value);
+        const fechaEmision = document.getElementById('fecha_emision').value;
+        const fechaVencimiento = document.getElementById('fecha_vencimiento').value;
+
+        if (isNaN(monto) || monto <= 0) {
+            alert("El monto debe ser un número positivo.");
+            return false;
+        }
+
+        if (new Date(fechaEmision) > new Date(fechaVencimiento)) {
+            alert("La fecha de emisión no puede ser posterior a la fecha de vencimiento.");
+            return false;
+        }
+
+        return true;
+    };
+</script>
+{% endblock %}

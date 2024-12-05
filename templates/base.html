@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cuentas por Pagar{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilos para la base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4; /* Fondo claro */
+            color: #333;
+        }
+
+        header {
+            background-color: #16423C; /* Color de fondo del encabezado */
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            margin: 1rem 0;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4d4d4; /* Color de los enlaces al pasar el mouse */
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+            background-color: white; /* Fondo blanco para el contenido */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333; /* Fondo del pie de página */
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cuentas por Pagar</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a>
+
+            {% if current_user.is_authenticated %}
+                <!-- Opciones para todos los usuarios autenticados -->
+
+                {% if current_user.role == 'admin' %}
+                    <!-- Opciones exclusivas para el rol admin -->
+                
+                {% endif %}
+
+                <!-- Enlace para cerrar sesión -->
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% endif %}
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 Cuentas por Pagar</p>
+    </footer>
+</body>
+</html>

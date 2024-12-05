@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Agregar Proveedor</h1>
+        <form method="POST" action="/agregar_proveedor" onsubmit="return validateForm()">
+            <label for="id_proveedor">id_proveedor:</label>
+            <input type="text" id="id_proveedor" name="id_proveedor" required><br><br>
+            
+            <label for="nombre">nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            
+            <label for="balance">balance:</label>
+            <input type="number" id="balance" name="balance" required oninput="validatePhone()">
+
+            <button type="submit" class="menu-button">Agregar</button>
+        </form>
+        <a href="/" class="mp-button">Volver al Menú Principal</a>
+    </div>
+
+    <script>
+        function validateForm() {
+            const id_proveedor = document.getElementById('id_proveedor').value.trim();
+            const nombre = document.getElementById('nombre').value.trim();
+            const balance = document.getElementById('balance').value.trim();
+
+            // Validar id_proveedor
+            if (id_proveedor === '') {
+                alert('El Id proveedor es obligatorio.')
+                return false;
+            }
+
+            // Validar nombre
+            if (nombre === '') {
+                alert('El nombre es obligatorio.')
+                return false;
+            }
+
+            // Validar que el balance no sea un número negativo
+if (isNaN(balance) || parseInt(balance) < 0) {
+    alert('El balance debe ser un número válido y no negativo.');
+    return false;
+}
+
+            return true; // Si todo es válido
+        }
+
+        function validatePhone() {
+            const telefono = document.getElementById('telefono').value;
+            const phonePattern = /^[0-9]*$/; // Solo permitir dígitos
+
+            if (!phonePattern.test(telefono)) {
+                alert('El teléfono solo puede contener números.');
+                document.getElementById('telefono').value = telefono.replace(/[^0-9]/g, ''); // Eliminar caracteres no válidos
+            }
+        }
+    </script>
+{% endblock %}

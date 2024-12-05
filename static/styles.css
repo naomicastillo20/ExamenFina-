@@ -1,0 +1,120 @@
+/* Estilos globales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Fondo claro */
+    color: #333;
+}
+
+/* Estilos específicos para la página de inicio */
+.menu-principal {
+    background-color: #ffffff; /* Fondo blanco para el menú */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 600px; /* Ancho máximo para el contenedor */
+    margin: 20px auto; /* Centrando el contenedor */
+    text-align: center; /* Centrar texto dentro del contenedor */
+}
+
+.menu-principal h1 {
+    color: #16423C; /* Color verde oscuro para el encabezado */
+    margin-bottom: 30px; /* Espacio debajo del encabezado */
+}
+
+.menu-button {
+    display: block; /* Bloque para ocupar todo el ancho */
+    margin: 10px 0; /* Espacio entre botones */
+    padding: 10px;
+    background-color: #8EB486; /* Color verde oscuro */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efecto de transición */
+}
+
+.reporte-button{
+    display: block; /* Bloque para ocupar todo el ancho */
+    margin: 10px 0; /* Espacio entre botones */
+    padding: 10px;
+    background-color: #afaa4c; /* Color verde oscuro */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efecto de transición */
+
+}
+
+.mp-button{
+    display: block; /* Bloque para ocupar todo el ancho */
+    margin: 10px 0; /* Espacio entre botones */
+    padding: 10px;
+    background-color: #16423C; /* Color verde oscuro */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Efecto de transición */
+
+}
+
+
+form button.menu-button-eliminar {
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    height: 40px;
+    background-color: #af4c4c; /* Color verde oscuro */
+    color: white;
+    text-decoration: none;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form button.menu-button {
+    width: 120px; /* Ajusta el ancho según tus necesidades */
+    height: 40px;
+    background-color: #6A9C89; /* Color verde oscuro */
+    color: white;
+    text-decoration: none;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: #16423C; /* Color verde más brillante al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
+}
+
+.menu-button:focus {
+    outline: none;
+    background-color: #16423C; /* Color verde más oscuro al enfocar */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #16423C
+    ; /* Color verde oscuro para el encabezado */
+    color: white;
+}
+
+/* 
+#8EB486
+#4CAF50

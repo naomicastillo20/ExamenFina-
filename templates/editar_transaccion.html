@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Editar Transacción</h1>
+    <form method="POST" enctype="multipart/form-data">
+
+        <label for="id_transaccion">Transaccion ID:</label>
+        <input type="text" id="id_transaccion" name="id_transaccion" value="{{ transaccion[0] }}" required><br><br>
+        
+        <label for="id_proveedor">Proveedor ID:</label>
+        <input type="text" id="id_proveedor" name="id_proveedor" value="{{ transaccion[1] }}" required><br><br>
+
+        <label for="tipo_movimiento">Tipo Movimiento:</label>
+        <select id="tipo_movimiento" name="tipo_movimiento" required>
+            <option value="DB" {% if transaccion.tipo_movimiento == 'DB' %}selected{% endif %}>DB</option>
+            <option value="CR" {% if transaccion.tipo_movimiento == 'CR' %}selected{% endif %}>CR</option>
+        </select><br><br>
+
+        <label for="monto">Monto:</label>
+        <input type="number" id="monto" name="monto" step="0.01" value="{{ transaccion[3] }}" required><br><br>
+
+        <button type="submit" class="menu-button">Actualizar</button>
+    </form>
+{% endblock %}

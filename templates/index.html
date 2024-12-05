@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="menu-principal">
+        <h1>Bienvenido</h1>
+        <div class="menu-container">
+            {% if current_user.is_authenticated %}
+                {% if current_user.role == 'admin' %}
+                    <!-- Opciones exclusivas para el rol admin -->
+                    <a href="{{ url_for('agregar_proveedor') }}" class="menu-button">Agregar Proveedor</a>
+                    <a href="{{ url_for('listar_proveedores') }}" class="menu-button">Listar Proveedores</a>
+                    <a href="{{ url_for('agregar_factura') }}" class="menu-button">Agregar Factura</a>
+                    <a href="{{ url_for('listar_facturas') }}" class="menu-button">Listar Facturas</a>
+                {% endif %}
+
+                <!-- Opciones disponibles para ambos roles -->
+                <a href="{{ url_for('agregar_transaccion') }}" class="menu-button">Agregar Transacción</a>
+                <a href="{{ url_for('listar_transacciones') }}" class="menu-button">Listar Transacciones</a>
+                <a href="{{ url_for('reportes') }}" class="menu-button">Reportes</a>
+            {% else %}
+                <p>Por favor, <a href="{{ url_for('login') }}">inicia sesión</a> para acceder al menú.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Agregar Factura</h1>
+        <form method="POST" action="/agregar_factura" id="data-form" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <label for="id_proveedor">Proveedor:</label>
+<select id="id_proveedor" name="id_proveedor" required>
+    <option value="">Seleccione un proveedor</option>
+    {% for proveedor in proveedores %}
+        <option value="{{ proveedor[0] }}">{{ proveedor[1] }}</option>
+    {% endfor %}
+</select>
+<br><br>
+            
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" name="monto" step="0.01" required><br><br>
+            
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="3" required></textarea><br><br>
+            
+            <label for="fecha_emision">Fecha de Emisión:</label>
+            <input type="date" id="fecha_emision" name="fecha_emision" required><br><br>
+            
+            <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+            <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" required>
+            
+            <button type="submit" class="menu-button">Agregar</button>
+        </form>
+        <a href="/" class="mp-button">Volver al Menú Principal</a>
+    </div>
+
+    <script>
+        function validateForm() {
+            const proveedor = document.getElementById('id_proveedor').value;
+            const monto = parseFloat(document.getElementById('monto').value);
+            const fechaEmision = document.getElementById('fecha_emision').value;
+            const fechaVencimiento = document.getElementById('fecha_vencimiento').value;
+
+            if (!proveedor) {
+                alert("Seleccione un proveedor.");
+                return false;
+            }
+
+            if (isNaN(monto) || monto <= 0) {
+                alert("El monto debe ser un número positivo.");
+                return false;
+            }
+
+            if (!fechaEmision) {
+                alert("La fecha de emisión es obligatoria.");
+                return false;
+            }
+
+            if (!fechaVencimiento) {
+                alert("La fecha de vencimiento es obligatoria.");
+                return false;
+            }
+
+            if (new Date(fechaEmision) > new Date(fechaVencimiento)) {
+                alert("La fecha de emisión no puede ser posterior a la fecha de vencimiento.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{% endblock %}

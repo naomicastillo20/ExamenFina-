@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Editar Proveedor</h1>
+<form method="POST" enctype="multipart/form-data">
+    <label for="id_proveedor">Id proveedor:</label>
+    <input type="text" id="id_proveedor" name="id_proveedor" value="{{ proveedor[0] }}" required><br><br>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="{{ proveedor[1] }}" required><br><br>
+
+    <label for="balance">Balance:</label>
+    <input type="number" step="0.01" id="balance" name="balance" value="{{ proveedor[2] }}" required>
+    <br>
+    <br>
+    <button type="submit" class="menu-button">Actualizar</button>
+</form>
+{% endblock %}
